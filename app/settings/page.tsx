@@ -24,15 +24,16 @@ export default function SettingsPage() {
   const [saving,   setSaving]   = useState(false);
   const [saved,    setSaved]    = useState(false);
 
-  useEffect(() => {
-    getBudget(month).then(b => {
-      if (!b) return;
-      setIncome(b.monthly_income);
-      setWants(b.wants_budget);
-      setNeeds(b.needs_budget);
-      setSavings(b.savings_target);
-    });
-  }, [month]);
+useEffect(() => {
+  getBudget(month).then((b: any) => {
+    if (!b) return;
+
+    setIncome(b.monthly_income || 0);
+    setWants(b.wants_budget || 0);
+    setNeeds(b.needs_budget || 0);
+    setSavings(b.savings_target || 0);
+  });
+}, [month]);
 
   const allocated = wants + needs + savings;
   const surplus   = income - allocated;
