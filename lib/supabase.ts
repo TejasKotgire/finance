@@ -44,7 +44,7 @@ export async function addTransaction(tx: {
 }): Promise<Transaction> {
   const { data, error } = await supabase
     .from('transactions')
-    .insert([tx as any])
+    .insert([tx] as any)
     .select()
     .single();
   if (error) throw error;
