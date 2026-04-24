@@ -99,7 +99,7 @@ export async function getMonthlyMetrics(month: string): Promise<MonthMetrics> {
     dailyBreakdown: {}, categoryBreakdown: {},
   };
 
-  for (const t of data ?? []) {
+  for (const t of (data as any[]) ?? []) {
     const amt = Number(t.amount);
     metrics.totalSpent += amt;
     if (!t.is_setup_cost)    metrics.trueBurn      += amt;
